@@ -7,6 +7,7 @@ int main(){
     char temp_scale;
     char convert_scale;
 
+    // get user input
     printf("Enter the Temperature Value: ");
     scanf("%f", &temperature);
 
@@ -16,8 +17,30 @@ int main(){
     printf("Enter the scale to convert to (C, F, or K): ");
     scanf(" %c", &convert_scale);
 
+    // prints the user's desired temp
+    printf("The desired temp is: %.2f %c\n", convert_temp(temperature, temp_scale, convert_scale), convert_scale);
+    temperature = convert_temp(temperature, temp_scale, 'C');
 
-    printf("The desired temp is: %.2f\n", convert_temp(temperature, temp_scale, convert_scale));
+    if(temperature < 0){
+        printf("Temperature Category: Freezing\n");
+        printf("Weather Advisory: Bring a coat!");
+    }
+    else if(temperature < 10){
+        printf("Temperature Category: Cold\n");
+        printf("Weather Advisory: Bring a jacket!");
+    }
+    else if(temperature < 25){
+        printf("Temperature Category: Comfortable\n");
+        printf("Weather Advisory: Enjoy the outdoors!");
+    }
+    else if(temperature < 35){
+        printf("Temperature Category: Hot\n");
+        printf("Weather Advisory: Drink lots of water!");
+    }
+    else{
+        printf("Temperature Category: Extreme Heat\n");
+        printf("Weather Advisory: Stay indoors!");
+    }
     return 0;
 }
 
@@ -25,10 +48,10 @@ float convert_temp(float temperature, char current_scale, char desired_scale){
     // turns everything to Fahrenheit 
     if(current_scale != 'F'){
         if (current_scale == 'C'){
-            temperature = (temperature * (9/5)) + 32;
+            temperature = (temperature * (9.0/5.0)) + 32;
         }
         else{ // has to be kelvin
-            temperature =((temperature - 273.15 ) * 9/5) + 32;
+            temperature =((temperature - 273.15 ) * 9.0/5.0) + 32;
         }
     }
 
