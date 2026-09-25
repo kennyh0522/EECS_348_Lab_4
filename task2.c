@@ -1,5 +1,7 @@
 # include <stdio.h>
 
+float convert_temp(float temperature, char current_scale, char desired_scale);
+
 int main(){
     float temperature;
     char temp_scale;
@@ -8,16 +10,14 @@ int main(){
     printf("Enter the Temperature Value: ");
     scanf("%f", &temperature);
 
-    printf("\nEnter the original scale (C, F, or K): ");
+    printf("Enter the original scale (C, F, or K): ");
     scanf(" %c",&temp_scale);
 
     printf("Enter the scale to convert to (C, F, or K): ");
-    scanf(" %c", convert_scale);
+    scanf(" %c", &convert_scale);
 
 
-
-
-    printf("temp: %f\nscale: %c\n", temperature, temp_scale);
+    printf("The desired temp is: %.2f\n", convert_temp(temperature, temp_scale, convert_scale));
     return 0;
 }
 
@@ -38,10 +38,10 @@ float convert_temp(float temperature, char current_scale, char desired_scale){
     }
     else if (desired_scale == 'C')
     {
-        return (temperature-32)*(5/9);
+        return (temperature-32)*(5.0/9.0);
     }
     else{
-        return (temperature-32) * (5/9) + 273.15;
+        return (temperature-32) * (5.0/9.0) + 273.15;
     }
     
 }
