@@ -7,15 +7,41 @@ int main(){
     char temp_scale;
     char convert_scale;
 
-    // get user input
-    printf("Enter the Temperature Value: ");
-    scanf("%f", &temperature);
+    // gets user inputs
+    while(1){
+        printf("\nEnter the Temperature Value: ");
+        if(scanf("%f", &temperature) != 1){ // ensures the user input is a numerical value
+            printf("\nInvalid input\n");
+            while (getchar() != '\n');
+            continue;
+        }
+        break;
 
-    printf("Enter the original scale (C, F, or K): ");
-    scanf(" %c",&temp_scale);
+    }
 
-    printf("Enter the scale to convert to (C, F, or K): ");
-    scanf(" %c", &convert_scale);
+    while(1){
+        printf("\nEnter the original scale (C, F, or K): ");
+        scanf(" %c", &temp_scale);
+        while (getchar() != '\n');
+        if(temp_scale == 'C' || temp_scale == 'F' || temp_scale == 'K'){ // ensures the user input is one of the scales
+            break;
+        }else{
+            printf("\nInvalid input\n");
+        }
+    }
+
+    while(1){
+        printf("\nEnter the scale to convert to (C, F, or K): ");
+        scanf(" %c", &convert_scale);
+        while (getchar() != '\n');
+        if(convert_scale == 'C' || convert_scale == 'F' || convert_scale == 'K'){ // ensures the user input is one of the scales
+            break;
+        }else{
+            printf("\nInvalid input\n");
+        }
+    }
+
+
 
     // prints the user's desired temp
     printf("The desired temp is: %.2f %c\n", convert_temp(temperature, temp_scale, convert_scale), convert_scale);

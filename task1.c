@@ -5,14 +5,19 @@ int main(void) {
     int score;
 
     while (1) {
+        // prints out the prompts and messages
         printf("\nEnter the NFL score (Enter 1 to stop): ");
-        scanf("%d", &score);
 
-        if (score == 1) {
+        if(scanf("%d", &score) != 1){ // ensures the user input is a numerical value
+            printf("\nInvalid input\n");
+            while (getchar() != '\n');
+            continue;
+        }
+        else if(score == 1) { // user ends the session
             printf("Goodbye!\n");
             break;
         } 
-        else if(score < 0){
+        else if(score < 0){ // chesk for negative values
             printf("\nInvalid input\n");
             continue;
         }
@@ -25,6 +30,7 @@ int main(void) {
         int max_td2 = score / 8; /* TD + 2 point conversion */
         int max_td1 = score / 7; /* TD + 1 point field goal */
 
+        // searches for all possible combinations
         for (int td = 0; td <= max_td; td++) {
             for (int fg = 0; fg <= max_fg; fg++) {
                 for (int safety = 0; safety <= max_safety; safety++) {
